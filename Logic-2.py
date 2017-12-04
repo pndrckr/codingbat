@@ -82,5 +82,55 @@ def fix_teen(n):
     return 0
   else:
     return n
+  
 def no_teen_sum(a, b, c):
   return fix_teen(a)+fix_teen(b)+fix_teen(c)
+
+
+
+############### round_sum
+
+# Para este problema, vamos a redondear al siguiente multiplo de 10
+# si el digito de la derecha es 5 o mayor. ej 15 rendondea a 20. Por
+# lo contrario se redondea hacia abajo ej. 12 redondea a 10. Dados 3
+# valores enteros, a b c,  devuelve la suma de sus redondeados. Para
+# evitar repeticion de codigo escribe "def_round10(num)" que devuelva
+# los valores ya redondeados.
+
+# round_sum(16, 17, 18) → 60
+# round_sum(12, 13, 14) → 30
+# round_sum(6, 4, 4) → 10
+
+def round10(n):
+  if n % 10 >= 5:
+    return n + 10 - (n % 10)
+  return n - (n % 10)  
+  
+def round_sum(a, b, c):
+  return round10(a)+round10(b)+round10(c)
+
+
+
+############### make_chocolate
+
+# Queremos hacer un paquete de "goal" kilos de chocolate. Tenemos 
+# barras pequeñas (small) de 1 kg y barras grandes (big) de 5kg.
+# Devuelve la cantidad de barras pequeñas necesitas, asumiendo que
+# usamos las barras grandes antes que las pequeñas. Devuelve -1
+# si no se puede hacer.
+
+# make_chocolate(4, 1, 9) → 4
+# make_chocolate(4, 1, 10) → -1
+# make_chocolate(4, 1, 7) → 2
+
+def make_chocolate(small, big, goal):
+  big_bar = big*5
+  max_b = goal / 5
+   
+  if big >= max_b:
+    if small >= (goal - max_b * 5):
+      return goal - max_b * 5
+  if big < max_b:
+    if small >= (goal - big_bar):
+      return goal - big_bar
+  return -1
